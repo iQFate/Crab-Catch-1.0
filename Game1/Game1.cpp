@@ -2,50 +2,12 @@
 //
 
 #include <raylib.h>
-#include "Game1.h"
+#include "Game1.hpp"
 #include <vector>
 using namespace std;
 
-struct Garbage{
-	int posX;
-	int posY;
-	int sizeX;
-	int sizeY;
-	int speed;
-	int type;
-};
 
-int main() {
-	InitWindow(600, 700, "Window");
-	Texture2D crabTexture = LoadTexture("Game1/Crab1.png");
-	Texture2D crabTexture2 = LoadTexture("Game1/Crab2.png");
-	Texture2D bottleTexture = LoadTexture("Game1/waterbottle.png");
-	Texture2D canTexture = LoadTexture("Game1/can.png");
-	Texture2D bombTexture = LoadTexture("Game1/bomb.png");
-	Texture2D explosionTexture = LoadTexture("Game1/explosion.png");
-
-	vector<Garbage>(TrashCan);
-
-
-	int crabPosX = 400 - 60 /2;
-	int  inatamitposY = 0;
-	int SpawnPos = GetRandomValue(20, 680);
-	int SpawnTime = 0;
-	int SpawnInterval = GetRandomValue(60, 180);
-	int Score = 0;
-	int crabFrame = 0;
-	int animationTimer = 0;
-	int lives = 4;
-	bool explosionActive = false;
-	int explosionTimer = 0;
-	int explosionX = 0;
-	int explosionY = 0;
-	
-
-	SetTargetFPS(60);
-
-	while (!WindowShouldClose()) {
-
+void spawnGarbage(vector<Garbage>& TrashCan){ // Spawn Garbage Function
 		SpawnTime ++;
 		if(SpawnTime >= SpawnInterval){ 
 			SpawnTime = 0;
@@ -90,8 +52,40 @@ int main() {
 				TrashCan.push_back(bomb);
 
 		}
+	}
 
-		
+int main() {
+	InitWindow(600, 700, "Window");
+	Texture2D crabTexture = LoadTexture("Game1/Crab1.png");
+	Texture2D crabTexture2 = LoadTexture("Game1/Crab2.png");
+	Texture2D bottleTexture = LoadTexture("Game1/waterbottle.png");
+	Texture2D canTexture = LoadTexture("Game1/can.png");
+	Texture2D bombTexture = LoadTexture("Game1/bomb.png");
+	Texture2D explosionTexture = LoadTexture("Game1/explosion.png");
+
+	vector<Garbage>(TrashCan);
+
+
+	int crabPosX = 400 - 60 /2;
+	int  inatamitposY = 0;
+	int SpawnPos = GetRandomValue(20, 680);
+	int SpawnTime = 0;
+	int SpawnInterval = GetRandomValue(60, 180);
+	int Score = 0;
+	int crabFrame = 0;
+	int animationTimer = 0;
+	int lives = 4;
+	bool explosionActive = false;
+	int explosionTimer = 0;
+	int explosionX = 0;
+	int explosionY = 0;
+	
+
+	SetTargetFPS(60);
+
+	while (!WindowShouldClose()) {
+
+		spawnGarbage(TrashCan);
 
 
 		if(IsKeyDown(KEY_D)) { crabPosX += 6.5; }
