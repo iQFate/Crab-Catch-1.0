@@ -12,4 +12,5 @@ endif()
 project(Game1 LANGUAGES C CXX)
 
 # Include sub-projects.
+add_subdirectory("raylib")
 add_subdirectory ("Game1")
